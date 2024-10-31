@@ -1,16 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { useState } from 'react'
+
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
-        <h1>Page</h1>
+        <Header />
+
+        <Footer />
     </>
   )
 }
 
-export default App
+export default App;
