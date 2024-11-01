@@ -6,7 +6,8 @@ import Ingredient from './Ingredient.js'
 User.hasMany(Recipe, { foreignKey: 'user_id'});
 Recipe.belongsTo(User, {foreignKey: 'user_id'});
 
-Recipe.hasMany()
+Recipe.hasMany(Ingredient, { foreignKey: 'recipe_id' });
+Ingredient.belongsTo(Recipe, { foreignKey: 'recipe_id'})
 
 
 
