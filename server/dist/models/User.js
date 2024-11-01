@@ -19,11 +19,7 @@ User.init({
         autoIncrement: true,
         primaryKey: true
     },
-    first_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    last_name: {
+    username: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -50,12 +46,6 @@ User.init({
             } // Ensure they type at least 6 characters for the password
         }
     },
-    full_name: {
-        type: DataTypes.VIRTUAL,
-        get() {
-            return `${this.first_name} ${this.last_name}`;
-        },
-    }
 }, {
     sequelize: client,
     tableName: 'users',
