@@ -12,10 +12,14 @@ Recipe.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    description: {
+    ingredients: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
+    instructions: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    }
 }, {
     sequelize: client,
     tableName: 'recipes',

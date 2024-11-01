@@ -1,4 +1,4 @@
-// import { NavLink, useNavigate } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 // import axios from 'axios'
 
 function Header() {
@@ -15,7 +15,8 @@ function Header() {
         //     </div>
         // </nav>
 
-        <nav className="navbar navbar-expand-lg bg-body-tertiary navbar-bg">
+        // BOOTSTRAP NAV ----------------------
+        <nav className="navbar-bg navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
                 <a className="navbar-brand custom-font chili-red" href="#">FlavorWave</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +37,13 @@ function Header() {
                             <a className="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
+                </div>
+                {/* SEARCH BAR */}
+                <div className="container-fluid search-bar">
+                    <form className="d-flex" role="search">
+                        <input className="form-control me-2" type="search" placeholder="What are you craving?" aria-label="Search"></input>
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
         </nav>

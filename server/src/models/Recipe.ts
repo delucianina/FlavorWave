@@ -4,13 +4,16 @@ import client from '../config/connection.js';
 interface RecipeAttributes {
     id: number;
     name: string;
-    description: string;
+    ingredients: string;
+    instructions: string;
+    user_id?: number;
 }
 
 class Recipe extends Model<RecipeAttributes> implements RecipeAttributes {
     public id!: number;
     public name!: string;
-    public description!: string;
+    public ingredients!: string;
+    public instructions!: string;
 }
 
 Recipe.init(
@@ -24,10 +27,14 @@ Recipe.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        description: {
+        ingredients: {
             type: DataTypes.TEXT,
-            allowNull:false,
+            allowNull: false,
         },
+        instructions: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        }
     },
     {
         sequelize: client,

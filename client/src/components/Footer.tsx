@@ -1,17 +1,11 @@
 function Footer() {
-    return (
-        <nav>
-            <div className='footer'>
+    const date = new Date();
 
-                <div>
-                    <h6>Socials</h6>
-                    <div className="socials-icons">
-                        
-                    </div>
-                </div>
-
-            </div>
-        </nav>
+    return(
+        <footer>
+            <p>Copyright {date.getFullYear()}. <br></br>Designed and Developed by ...</p>
+            {/* <a href="https://github.com/delucianina/" >GITHUB PROFILE LINK</a> */}
+        </footer>
     )
 }
 
