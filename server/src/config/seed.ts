@@ -1,7 +1,7 @@
 import {faker} from '@faker-js/faker';
 
 import {client} from '../models/index.js';
-import {User, Ingredient, Recipe} from '../models/index.js';
+import {User, Recipe, Favorite} from '../models/index.js';
 
 // Recreate all of the tables, using our models - erases all previous data
 await client.sync({force: true});
@@ -11,16 +11,12 @@ async function seedUsers() {
   let amount = 10;
   
   while (amount--) {
-    const first_name = faker.person.firstName();
-    const last_name = faker.person.lastName();
+    const username = faker.person.firstName().toLowerCase()
 
     userData.push({
-      first_name: first_name,
-      last_name: last_name,
-      email: `${first_name.toLowerCase()}.${last_name.toLowerCase()}@test.com`,
+      username: username,
+      email: `${username}@test.com`,
       password: 'password123',
-      // Generate a number between 15 and 100 for the age
-      age: Math.floor(Math.random() * (100 - 15 + 1)) + 15
     });
   }
 
@@ -28,87 +24,55 @@ async function seedUsers() {
   await User.bulkCreate(userData);
 }
 
-async function seedShops() {
+async function seedRecipes() {
   const users = await User.findAll();
-  const shopData = [];
+  const recipeData = [];
   let amount = 15;
 
   while(amount--) {
     const randomUser = users[Math.floor(Math.random() * users.length)];
 
-    shopData.push({
-      name: faker.company.name() + ' Winery',
-      address: faker.location.streetAddress(),
+    recipeData.push({
+      name: faker.food.dish() + ' Recipe',
+      ingredients: faker.food.ingredient(),
+      instructions: 'Mix it together and good luck',
       user_id: randomUser.id
     });
   }
 
   // @ts-ignore
-  await Shop.bulkCreate(shopData);
+  await Recipe.bulkCreate(recipeData);
 }
 
-async function seedWines() {
-  const shops = await Shop.findAll();
-  const wineData = [];
+async function seedFavorites() {
+  const recipes = await Recipe.findAll();
+  const users = await User.findAll();
+  const favoriteData = [];
   let amount = 30;
-  const types = ['rose', 'pinot noir', 'red', 'sauvignon', 'cabernet'];
 
   while(amount--) {
-    const randomShop = shops[Math.floor(Math.random() * shops.length)];
+    const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+    const randomUser = users[Math.floor(Math.random() * users.length)];
 
-    wineData.push({
-      brand: faker.company.name(),
-      type: types[Math.floor(Math.random() * types.length)],
-      region: faker.location.country(),
-      price: faker.finance.amount(),
-      shop_id: randomShop.id,
+    favoriteData.push({
+      recipe_id: randomRecipe.id,
       // @ts-ignore
-      user_id: randomShop.user_id
+      user_id: randomUser.id
     });
   }
 
   // @ts-ignore
-  await Wine.bulkCreate(wineData);
+  await Favorite.bulkCreate(favoriteData);
 }
-
-async function seedManagers() {
-  const users = await User.findAll();
-  const managerData: any = [];
-  const userData: any = [];
-  let amount = 5;
-
-  const getRandomUser = (isManager: boolean): any => {
-    const randomUser = users[Math.floor(Math.random() * users.length)];
-
-    if (isManager) {
-      return managerData.includes(randomUser) ? getRandomUser(isManager) : randomUser;
-    }
-
-    return userData.includes(randomUser) ? getRandomUser(isManager) : randomUser;
-  };
-
-  while (amount--) {
-    const manager = getRandomUser(true);
-    const user = getRandomUser(false);
-
-    managerData.push(manager);
-    userData.push(user);
-  }
 
   // @ts-ignore
   // A for of loop lets us run asynchronous code within the code block, whereas other loops (including forEach) do not
-  for (const [index, user] of userData.entries()) {
-    await user.update({
-      manager_id: managerData[index].id
-    });
-  }
-}
+
 
 try {
   await seedUsers();
-  await seedShops();
-  await seedWines();
-  await seedManagers();
+  await seedRecipes();
+  await seedFavorites();
 
   console.log('Tables seeded successfully!');
 } catch (error) {

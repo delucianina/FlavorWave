@@ -1,9 +1,9 @@
 import express from 'express';
-// import {client} from './models/index.js';
+import {client} from './models/index.js';
 // A package to help pull cookies from the client/browser request obj
 import cookieParser from 'cookie-parser';
 
-// import routes from './routes/api/index.js';
+import routes from './routes/api/index.js';
 
 const app = express();
 const PORT = process.env.PORT || 3333;
@@ -17,9 +17,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Load all of our routes
-// app.use('/', routes);
+app.use('/', routes);
 
 // Sync all of our models to create the database tables (Users, Shops and Wines)
-// await client.sync({ force: false });
+await client.sync({ force: false });
 
 app.listen(PORT, () => console.log('Express server started'));
