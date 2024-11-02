@@ -4,7 +4,7 @@ import { isAuthenticated } from '../helpers/index.js';
 
 const router = Router();
 
-// Get user shops
+// Get user recipes
 // localhost:3333/api/shops/user
 router.get('/recipes', isAuthenticated, async(req: Request, res: Response) => {
   const userRecipes = await Recipe.findAll({
@@ -16,6 +16,8 @@ router.get('/recipes', isAuthenticated, async(req: Request, res: Response) => {
   res.json(userRecipes);
 });
 
+
+// Get user favorite recipes
 router.get('/favorites', isAuthenticated, async (req: Request, res: Response) => {
   try {
     const userFavorites = await Favorite.findAll({
@@ -34,7 +36,29 @@ router.get('/favorites', isAuthenticated, async (req: Request, res: Response) =>
   }
 });
 
-// Create a shop
+// Create a recipe
 // localhost:3333/api/shop
+router.post('/recipes/create', isAuthenticated, async (req: Request, res: Response) => {
+  try {
+    await Recipe.create({
+      ...req.body,
+      // Never get the user's id from the client directly (ie. sending a user id through the req.body json object)
+      user_id: req.user.id
+    });
+
+    res.json({
+      message: 'Recipe created successfully!'
+    })
+  } catch (error) {
+    console.log('create recipe error', error);
+    res.status(500).json({
+      message: 'There was a problem creating the recipe'
+    });
+  }
+});
+
+// Add a favorite
+
+// Search recipe (using API Ninja with an ingredient)
 
 export default router;
