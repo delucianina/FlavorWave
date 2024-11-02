@@ -2,8 +2,10 @@ import express from 'express';
 import {client} from './models/index.js';
 // A package to help pull cookies from the client/browser request obj
 import cookieParser from 'cookie-parser';
-
+import dotenv from 'dotenv';
 import routes from './routes/api/index.js';
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3333;
