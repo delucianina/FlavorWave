@@ -1,19 +1,11 @@
-// import { NavLink } from 'react-router-dom';
-// import axios from 'axios'
+import { NavLink, useNavigate } from 'react-router-dom';
+// import { useStore } from '../store';
+import { ReactEventHandler } from 'react';
+import axios from 'axios';
 
 function Header() {
     return (
-        // <nav>
-        //     <div className='navbar'>
-
-        //         <h1 className='custom-font chili-red logo'>FlavorWave</h1>
-        //         <h6>Search Recipes</h6>
-        //         <h6>Favorites</h6>
-        //         <h6>About</h6>
-        //         <h6>Contact</h6>
-
-        //     </div>
-        // </nav>
+        
 
         // BOOTSTRAP NAV ----------------------
         <nav className="navbar-bg navbar navbar-expand-lg bg-body-tertiary">
