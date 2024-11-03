@@ -1,10 +1,17 @@
 import {Router, Request, Response} from 'express';
+import axios from 'axios';
 import { Recipe, Favorite } from '../../models/index.js';
 import { isAuthenticated } from '../helpers/index.js';
 
 const router = Router();
 
-// Get user recipes
+// interface isAuthenticated extends Request {
+//   user?: {
+//     id: number;
+//   };
+// }
+
+// Get user shops
 // localhost:3333/api/shops/user
 router.get('/recipes', isAuthenticated, async(req: Request, res: Response) => {
   const userRecipes = await Recipe.findAll({
@@ -57,7 +64,25 @@ router.post('/recipes/create', isAuthenticated, async (req: Request, res: Respon
   }
 });
 
-// Add a favorite
+// Add a favorite (Matt I added this code to add a favorite but it kept giving me an error)
+// router.post('/favorites', isAuthenticated, async (req: Request, res: Response) => {
+//   const { recipe_id } = req.body;
+
+//   if (!recipe_id) {
+//     return res.status(400).json({ error: 'Recipe ID is required'});
+//   }
+
+//   try {
+//     const favorite = await Favorite.create({
+//       recipe_id,
+//       user_id: req.user.id
+//     });
+//     res.status(201).json({favorite});
+//   } catch (error) {
+//     console.error('Error adding favorite:', error);
+//     res.status(500).json({ error: 'An error ocurred while adding favorite'});
+//   }
+// });
 
 // Search recipe (using API Ninja with an ingredient)
 

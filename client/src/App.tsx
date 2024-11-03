@@ -1,9 +1,15 @@
 // import { useState } from 'react'
 
+/*Components*/
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Profile from './components/Profile';
 import Favorites from './components/Favorites';
-import Footer from './components/Footer';
+
+/* Pages */
+import Landing from './pages/Landing.tsx';
+import UserProfile from './pages/UserProfile.tsx';
+
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -11,8 +17,7 @@ function App() {
   return (
     <>
         <Header />
-        <Profile />
-        <Favorites />
+        <Landing />
         <Footer />
     </>
   )

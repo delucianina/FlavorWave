@@ -1,9 +1,10 @@
 import express from 'express';
 import {client} from './models/index.js';
-// A package to help pull cookies from the client/browser request obj
 import cookieParser from 'cookie-parser';
-
+import dotenv from 'dotenv';
 import routes from './routes/api/index.js';
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3333;
@@ -20,6 +21,11 @@ app.use(cookieParser());
 app.use('/', routes);
 
 // Sync all of our models to create the database tables (Users, Shops and Wines)
-await client.sync({ force: false });
+try {
+    await client.sync({ force: false });
+    console.log('Database synced successfully');
+} catch (error) {
+    console.error('Error syncing database:', error);
+}
 
 app.listen(PORT, () => console.log('Express server started'));
