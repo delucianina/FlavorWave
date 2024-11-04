@@ -9,27 +9,19 @@ import {
   } from 'react';
   import axios from 'axios';
 
+  import { User } from '../interfaces';
+
   // ------------- NEEDS TO BE CHANGED TO RECIPE? 
-//   interface Shop {
-//     id?: number;
-//     name?: string;
-//     address?: string;
-//     created_at?: Date;
-//     updated_at?: Date;
-//   }
+  // interface Shop {
+  //   id?: number;
+  //   name?: string;
+  //   address?: string;
+  //   created_at?: Date;
+  //   updated_at?: Date;
+  // }
 
-  interface User {
-    id?: number;
-    first_name?: string;
-    last_name?: string;
-    full_name?: string;
-    email?: string;
-    created_at?: Date;
-    updated_at?: Date;
-    // shops?: Shop[]
-  }
 
-  interface State {
+  export interface State {
     user: User | null;
     loading: boolean;
   }
