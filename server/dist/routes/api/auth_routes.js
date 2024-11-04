@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
         });
     }
     catch (error) {
-        // console.log('REGISTER ERROR', error);
+        console.log('REGISTER ERROR', error);
         if (error.errors) {
             res.status(403).json({
                 user: null,
@@ -38,7 +38,7 @@ router.post('/register', async (req, res) => {
 });
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    // console.log(res);
+    console.log(req);
     // Check if there is a user with that email address provided in the form
     const user = await User.findOne({
         where: {

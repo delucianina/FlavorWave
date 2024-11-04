@@ -27,6 +27,8 @@ function AuthForm(propsObj: { isLogin: boolean }) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    console.log(event);
+
     const url = propsObj.isLogin ? '/auth/login' : '/auth/register';
 
     try {

@@ -29,8 +29,8 @@ function App() {
   // Create an object of page titles to use for the browser tab
   const titles: {[key: string]: string} = {
     '/': 'FlavorWave - Home',
-    'auth/register': 'FlavorWave - Register',
-    'auth/login': 'FlavorWave - Log In',
+    '/register': 'FlavorWave - Register',
+    '/login': 'FlavorWave - Log In',
     '/recipes': 'FlavorWave - View Recipes',
     '/recipes/create': 'FlavorWave - Create Recipe',
     '/recipes/search': 'FlavorWave - Search Recipe',
@@ -39,6 +39,7 @@ function App() {
   };
 
   const getTitle = (path: string): string => {
+    // console.log(path);
     if (path.startsWith('/shop/')) {
       const route = path.split('/shop/')[1];
       if (!isNaN(Number(route))) {

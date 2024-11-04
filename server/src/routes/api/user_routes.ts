@@ -37,7 +37,7 @@ router.get('/recipes/search', isAuthenticated, async (req: Request, res: Respons
 
 // Get user shops
 // localhost:3333/api/shops/user
-router.get('/recipes', isAuthenticated, async(req: Request, res: Response) => {
+router.get('/recipes/user', isAuthenticated, async(req: Request, res: Response) => {
   const userRecipes = await Recipe.findAll({
     where: {
       user_id: req.user.id  
@@ -49,7 +49,7 @@ router.get('/recipes', isAuthenticated, async(req: Request, res: Response) => {
 
 
 // Get user favorite recipes
-router.get('/favorites', isAuthenticated, async (req: Request, res: Response) => {
+router.get('/favorites/:user_id', isAuthenticated, async (req: Request, res: Response) => {
   try {
     const userFavorites = await Favorite.findAll({
       where: {
