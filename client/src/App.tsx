@@ -36,30 +36,31 @@ function App() {
     '/recipes': 'FlavorWave - View Recipes',
     '/recipes/create': 'FlavorWave - Create Recipe',
     '/recipes/search': 'FlavorWave - Search Recipe',
+    '/results': 'FlavorWave - Search Results',
     '/favorites': 'FlavorWave - Search Recipe',
     '/favorites/create': 'FlavorWave - Search Recipe',
   };
 
-  const getTitle = (path: string): string => {
-    // console.log(path);
-    if (path.startsWith('/shop/')) {
-      const route = path.split('/shop/')[1];
-      if (!isNaN(Number(route))) {
-        return `Wine Tracker - View Shop ${route}`;
-      } else {
-        return `Wine Tracker - ${route[0].toUpperCase()}${route.slice(1)} Shop`
-      }
-    }
-    return titles[path] || 'Page Not Found';
-  };
+  // const getTitle = (path: string): string => {
+  //   // console.log(path);
+  //   if (path.startsWith('/shop/')) {
+  //     const route = path.split('/shop/')[1];
+  //     if (!isNaN(Number(route))) {
+  //       return `Wine Tracker - View Shop ${route}`;
+  //     } else {
+  //       return `Wine Tracker - ${route[0].toUpperCase()}${route.slice(1)} Shop`
+  //     }
+  //   }
+  //   return titles[path] || 'Page Not Found';
+  // };
 
-  useEffect(() => {
-    // Grab the corresponding title based on the current route - what comes after localhost:5173
-    const title = getTitle(location.pathname);
+  // useEffect(() => {
+  //   // Grab the corresponding title based on the current route - what comes after localhost:5173
+  //   const title = getTitle(location.pathname);
 
-    // Set the browser tab title when the location of the browser changes
-    document.title = title || 'Page Not Found';
-  }, [location]);
+  //   // Set the browser tab title when the location of the browser changes
+  //   document.title = title || 'Page Not Found';
+  // }, [location]);
 
   return (
 

@@ -6,12 +6,12 @@ import { useStore } from '../store';
 // NINA'S CODE ----------------------
 // THIS NEEDS TO BE UPDATED TO LOAD IN THE USER'S INFO AND DISPLAY DYNAMICALLY 
 
-interface User {
-    id: number;
-    username: string;
-    email: string;
-    password?: string;
-}
+// interface User {
+//     id: number;
+//     username: string;
+//     email: string;
+//     password?: string;
+// }
 
 
 function Profile() {
