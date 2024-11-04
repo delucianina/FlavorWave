@@ -75,7 +75,7 @@ function App() {
       <Header />
       
 
-      <main className="container-fluid flex-fill">
+      <main className="">
         <Routes>
           <Route path="/" element={<Landing />} />
 
