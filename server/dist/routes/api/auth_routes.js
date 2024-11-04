@@ -38,6 +38,7 @@ router.post('/register', async (req, res) => {
 });
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    // console.log(res);
     // Check if there is a user with that email address provided in the form
     const user = await User.findOne({
         where: {

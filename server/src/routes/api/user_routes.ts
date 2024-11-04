@@ -1,15 +1,39 @@
 import {Router, Request, Response} from 'express';
-import axios from 'axios';
+import fetch from 'node-fetch';
+// import axios from 'axios';
 import { Recipe, Favorite } from '../../models/index.js';
 import { isAuthenticated } from '../helpers/index.js';
 
 const router = Router();
 
-// interface isAuthenticated extends Request {
-//   user?: {
-//     id: number;
-//   };
-// }
+// Route to search for a recipe by ingredient
+router.get('/recipes/search', isAuthenticated, async (req: Request, res: Response): Promise<void> => {
+  const { ingredient } = req.query;
+  const apiKey = process.env.API_NINJA_KEY;
+
+  if (!ingredient) {
+    res.status(400).json({ message: 'Ingredient is required' });
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://api.api-ninjas.com/v1/recipe?query=${ingredient}`, {
+      headers: {
+        'X-Api-Key': apiKey as string // Ensure you have this key in your .env file
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch recipes');
+    }
+
+    const recipes = await response.json();
+    res.json(recipes);
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+    res.status(500).json({ message: 'An error occurred while fetching recipes' });
+  }
+});
 
 // Get user shops
 // localhost:3333/api/shops/user
@@ -65,24 +89,41 @@ router.post('/recipes/create', isAuthenticated, async (req: Request, res: Respon
 });
 
 // Add a favorite (Matt I added this code to add a favorite but it kept giving me an error)
-// router.post('/favorites', isAuthenticated, async (req: Request, res: Response) => {
-//   const { recipe_id } = req.body;
+router.post('/favorites/create', isAuthenticated, async (req: Request, res: Response) => {
+  try {
+    await Favorite.create({
+      ...req.body,
+      user_id: req.user.id,
+    });
 
-//   if (!recipe_id) {
-//     return res.status(400).json({ error: 'Recipe ID is required'});
-//   }
+    res.json({
+      message: 'Favorite created successfully!'
+    })
+  } catch (error) {
+    console.log('create favorite error', error);
+    res.status(500).json({
+      message: 'There was a problem creating the favorite'
+    })
+  }
+ 
+  // const { recipe_id } = req.body;
 
-//   try {
-//     const favorite = await Favorite.create({
-//       recipe_id,
-//       user_id: req.user.id
-//     });
-//     res.status(201).json({favorite});
-//   } catch (error) {
-//     console.error('Error adding favorite:', error);
-//     res.status(500).json({ error: 'An error ocurred while adding favorite'});
-//   }
-// });
+  // if (!recipe_id) {
+  //   res.status(400).json({ error: 'Recipe ID is required'});
+  //   return;
+  // }
+
+  // try {
+  //   const favorite = await Favorite.create({
+  //     recipe_id,
+  //     user_id: req.user.id
+  //   });
+  //   res.status(201).json({favorite});
+  // } catch (error) {
+  //   console.error('Error adding favorite:', error);
+  //   res.status(500).json({ error: 'An error ocurred while adding favorite'});
+  // }
+});
 
 // Search recipe (using API Ninja with an ingredient)
 
