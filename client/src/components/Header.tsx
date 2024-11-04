@@ -9,7 +9,7 @@ function Header() {
     const navigate = useNavigate();
 
     if (!store) {
-        throw new Error('Store is not available');
+        throw new Error('You must be logged in');
     }
 
     const { state, setState } = store;
@@ -32,7 +32,7 @@ function Header() {
         // BOOTSTRAP NAV ----------------------
         <nav className="navbar-bg navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <a className="navbar-brand custom-font chili-red" href="#">FlavorWave</a>
+                <a className="navbar-brand custom-font chili-red logo" href="#">FlavorWave</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -42,6 +42,7 @@ function Header() {
 
                     <NavLink className="nav-link" to="/">Home</NavLink>
 
+                    {/* COPILOT SAYS THIS IS SET UP CORRECTLY, BUT WE CAN'T TEST IT YET */}
                     {state.user ? (
                         <>
                             <a onClick={logoutUser} className="nav-link" href="/auth/logout">Log Out</a>

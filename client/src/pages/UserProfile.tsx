@@ -1,5 +1,7 @@
 // import React, { useState } from 'react';
 
+// RITA'S CODE ------------------------------------- 
+
 interface UserProfile {
     name: string;
     email: string;
