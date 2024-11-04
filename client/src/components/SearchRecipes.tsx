@@ -1,51 +1,45 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-interface Recipe {
-    id: number;
-    name: string;
-    ingredients: string;
-    instructions: string;
-    user_id?: number;
-}
 
-const SearchRecipes: React.FC = () => {
+// interface Recipe {
+//   id: number;
+//   name: string;
+//   ingredients: string;
+//   instructions: string;
+//   user_id?: number;
+// }
+
+function SearchRecipes () {
   const [ingredient, setIngredient] = useState('');
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const navigate = useNavigate();
 
-  const handleSearch = async () => {
-    const response = await fetch(`/api/recipes/search?ingredient=${ingredient}`);
-    const data: Recipe[] = await response.json();
-    setRecipes(data);
-  };
+  
+  const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const res = await axios.get(`/api/recipes/search?ingredient=${ingredient}`);
 
-  const handleAddFavorite = async (recipe: Recipe) => {
-    await fetch('/api/favorites/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(recipe)
+    navigate('/results', {
+      state: {
+        results: res.data
+      }
     });
+
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={ingredient}
-        onChange={(e) => setIngredient(e.target.value)}
-        placeholder="Enter an ingredient"
-      />
-      <button onClick={handleSearch}>Search</button>
-
-      <ul>
-        {recipes.map((recipe) => (
-          <li key={recipe.id}>
-            <h3>{recipe.name}</h3>
-            <button onClick={() => handleAddFavorite(recipe)}>Add to Favorites</button>
-          </li>
-        ))}
-      </ul>
+    <div className="container-fluid search-bar">
+      <form onSubmit={handleSearch} className="d-flex" role="search">
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="What are you craving?"
+          value={ingredient}
+          onChange={(e) => setIngredient(e.target.value)}
+          aria-label="Search" />
+        <button className="btn btn-outline-success">Search</button>
+      </form>
     </div>
   );
 };

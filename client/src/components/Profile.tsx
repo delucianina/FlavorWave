@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useStore } from '../store';
 // import { User } from '../interfaces';
 
 // NINA'S CODE ----------------------
@@ -18,6 +19,8 @@ function Profile() {
     const url = 'https://api.api-ninjas.com/v1/quotes?category=food';
     const apiKey = 'xbKJ/QLoox2DniJRCcKjzg==x45sJPNGwXeAw1X1';
 
+    const store = useStore();
+
     useEffect(() => {
         axios.get(url, {
             headers: {
@@ -28,21 +31,14 @@ function Profile() {
         });
     }, []);
 
-    const [user, setUser] = useState<User | null>(null);
-    useEffect(() => {
-        axios.get('/auth/user')
-            .then(res => {
-                setUser(res.data.user);
-            })
-    }, [])
 
     return (
         <section className="profile-page">
             <div className="profile-block">
                 <div className="profile-image"></div>
                 <div className="user-quote">
-                    <h4>What's cookin'<br></br>{user && (
-                        <span key={user.id}>{user.username}</span>
+                    <h4>What's cookin'<br></br>{store?.state.user && (
+                        <span>{store?.state.user.username}</span>
                     )}</h4>
                     <p>{quote}</p>
                 </div>

@@ -14,6 +14,7 @@ import UserRecipes from './pages/UserRecipes';
 import UserFavorites from './pages/UserFavorites';
 import RecipeForm from './pages/RecipeForm';
 import Recipe from './pages/Recipe';
+import SearchResults from './pages/SearchResults';
 // import FavoriteForm from './pages/FavoriteForm';
 
 
@@ -84,6 +85,8 @@ function App() {
           */}
           {state.user ? (
             <>
+              <Route path="/" element={<Landing />}/>
+              <Route path="/results" element={<SearchResults />} />
               <Route path="/recipes" element={<UserRecipes />} />
               <Route path="/recipes/create" element={<RecipeForm />} />
               <Route path="/recipe/:id" element={<Recipe />} />

@@ -10,6 +10,7 @@ export interface User {
 export interface Recipe {
     id: number;
     name: string;
+    title?: string;
     ingredients: string;
     instructions: string;
     user_id?: number;

@@ -10,7 +10,7 @@ function UserRecipes() {
   useEffect(() => {
     axios.get('/api/recipes')
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         setRecipes([...res.data.recipes]);
       })
   }, []);
@@ -28,7 +28,10 @@ function UserRecipes() {
               <p>Ingredients: {recipe.ingredients}</p>
               <p className="flex-fill">Instructions: {recipe.instructions}</p>
               <div className="d-flex justify-content-center">
-                <NavLink className="btn btn-primary" to={`/shop/${recipe.id}`}>View Recipe</NavLink>
+                <NavLink className="btn btn-primary" to={`/recipe/${recipe.id}`} state={{
+                  recipe: recipe,
+                  isFavorite: false
+                }}>View Recipe</NavLink>
               </div>
             </article>
           ))}

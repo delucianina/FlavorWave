@@ -21,7 +21,7 @@ try {
     console.log('Database synced successfully');
 }
 catch (error) {
-    console.error('Error syncing database:', error);
+    console.error('Error syncing database:');
 }
 // Render deployment code that will only trigger when the app is running on Render
 if (process.env.PORT) {

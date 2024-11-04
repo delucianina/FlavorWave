@@ -9,7 +9,7 @@ function Recipe() {
             <h2>{location.state.recipe.name}</h2>
             <p>Ingredients: {location.state.recipe.ingredients}</p>
             <p>Instructions: {location.state.recipe.instructions}</p>
-            <NavLink to="/favorites">Go Back</NavLink>
+            <NavLink to={location.state.isFavorite ? '/favorites' : '/recipes'}>Go Back</NavLink>
         </section>
     )
 }
