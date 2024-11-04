@@ -1,7 +1,7 @@
 # FlavorWave
 
 ## Description
-FlaworWave is a comprehensive web application designed to simplify the management of your favorite recipes. This application  provides an intuitive interface for viewing, adding and updating recipes. FlavorWave streamlines the process of maintaining accurate and up-to-date records of your culinary creations, enhancing your cooking experience.
+FlavorWave is a comprehensive web application designed to simplify the management of your favorite recipes. This application  provides an intuitive interface for viewing, adding and updating recipes. FlavorWave streamlines the process of maintaining accurate and up-to-date records of your culinary creations, enhancing your cooking experience.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -17,7 +17,7 @@ To install the FlavorWave application, follow these steps:
 git clone 
 
 2. Navigate to the project directory:
-cd FlaworWave
+cd FlavorWave
 
 3. Install the dependecies for both client and server:
 npm i
@@ -45,7 +45,6 @@ To use the FlavorWave application, follow these steps:
 
 .Favorite Recipes
 
-Example: (images or URL)
 
 ## Technologies Used
 . React 
