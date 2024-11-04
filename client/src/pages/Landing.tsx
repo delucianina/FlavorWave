@@ -1,11 +1,11 @@
 
 // import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { useStore } from '../store';
+// import { useState } from 'react';
+// import { NavLink } from 'react-router-dom';
+// import { useStore } from '../store';
 
 import Profile from '../components/Profile';
-import Favorites from '../components/Favorites';
+// import Favorites from '../components/Favorites';
 // import UserProfile from '../pages/UserProfile';
 
 
@@ -37,7 +37,7 @@ function Landing() {
 
 
     return (
-        <main>
+        <>
 
             {/* Rita's early code: ---------------------- */}
             {/* <NavLink to={state.user ? '/shops' : '/register'} className="btn btn-primary btn-lg px-5">
@@ -75,10 +75,10 @@ function Landing() {
 
             {/* THIS IS RENDERING BY DEFAULT AS PLACEHOLDER AND FOR TESTING PURPOSES, IT NEEDS TO ONLY LOAD ONCE THE LOGIN WORKS */}
             <Profile />
-            <Favorites />
+            {/* <Favorites /> */}
 
             
-        </main>
+        </>
     );
 }
 

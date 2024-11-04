@@ -47,7 +47,32 @@ function Header() {
                         <>
                             <a onClick={logoutUser} className="nav-link" href="/auth/logout">Log Out</a>
                             <ul className="navbar-nav">
-                                <li className="nav-item">
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Menu
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li>
+                                            <NavLink className="dropdown-item active" aria-current="page" to="/recipes" end>Recipes</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink className="dropdown-item" to="/favorites" end>Favorites</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink className="dropdown-item" to="/recipes/create">Add Recipe</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink className="dropdown-item" to="/favorites/create">Add Favorite</NavLink>
+                                        </li>
+                                        <li>
+                                            <a className="dropdown-item" href="#">About</a>
+                                        </li>
+                                        <li>
+                                            <a className="dropdown-item" href="#">Contact</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {/* <li className="nav-item">
                                     <NavLink className="nav-link active" aria-current="page" to="/recipes">Recipes</NavLink>
                                 </li>
                                 <li className="nav-item">
@@ -64,7 +89,7 @@ function Header() {
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#">Contact</a>
-                                </li>
+                                </li> */}
                             </ul>
                         </>
                     ) : (

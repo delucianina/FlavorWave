@@ -24,13 +24,16 @@ function AuthForm(propsObj: { isLogin: boolean }) {
 
   const { setState } = store;
 
+  
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    // console.log(event);
     event.preventDefault();
 
-    console.log(event);
+    // console.log(event);
 
     const url = propsObj.isLogin ? '/auth/login' : '/auth/register';
 
+    // console.log(url);
     try {
       const res = await axios.post(url, formData)
 

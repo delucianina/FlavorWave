@@ -6,6 +6,7 @@ const router = Router();
 router.post('/register', async (req, res) => {
     try {
         const user = await User.create(req.body);
+        // console.log(user);
         // Generate a JWT token
         const token = createToken(user.id);
         // Send the token inside of a cookie to the client/browser

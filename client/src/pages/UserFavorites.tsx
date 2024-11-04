@@ -8,7 +8,7 @@ function UserFavorites() {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
 
   useEffect(() => {
-    axios.get('/api/favorites')
+    axios.get('/api/favorites/user')
       .then(res => {
         setFavorites([...res.data.favorites]);
       })
@@ -21,10 +21,11 @@ function UserFavorites() {
         {!favorites.length && <h4 className="ms-4 mt-3 fw-light">You haven't added any Favorites.</h4>}
 
         {favorites.map(favorite => (
-          <article key={favorite.recipe_id} className="col-4 d-flex flex-column align-items-center">
-            <div className="d-flex justify-content-center">
-              <NavLink className="btn btn-primary" to={`/user/${favorite.recipe_id}`}>View Favorite</NavLink>
-            </div>
+          <article key={favorite.recipe_id} className="col-4 d-flex flex-column align-items-center p-3">
+            <h4>{favorite.Recipe.name}</h4>
+            <NavLink className="btn btn-primary" to={`/recipe/${favorite.recipe_id}`} state={{
+              recipe:favorite.Recipe
+            }}>View Recipe</NavLink>
           </article>
         ))}
       </section>

@@ -1,9 +1,18 @@
 import { Sequelize } from 'sequelize';
-const client = new Sequelize({
+let client;
+client = process.env.DB_URL ? new Sequelize(process.env.DB_URL, {
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
+}) : new Sequelize({
     username: 'postgres',
     password: 'pass',
     database: 'flavorwave_db',
     host: 'localhost',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
 });
 export default client;

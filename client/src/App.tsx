@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
+import { useEffect } from 'react';
+import {Routes, Route, useLocation} from 'react-router-dom';
 import { useStore } from './store';
 
 import Header from './components/Header';
-import Profile from './components/Profile';
-import Favorites from './components/Favorites';
+// import Profile from './components/Profile';
+// import Favorites from './components/Favorites';
 import Footer from './components/Footer';
 
 import Landing from './pages/Landing';
@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound';
 import UserRecipes from './pages/UserRecipes';
 import UserFavorites from './pages/UserFavorites';
 import RecipeForm from './pages/RecipeForm';
+import Recipe from './pages/Recipe';
 // import FavoriteForm from './pages/FavoriteForm';
 
 
@@ -73,7 +74,7 @@ function App() {
       <Header />
       
 
-      <main className="container-fluid">
+      <main className="container-fluid flex-fill">
         <Routes>
           <Route path="/" element={<Landing />} />
 
@@ -85,7 +86,9 @@ function App() {
             <>
               <Route path="/recipes" element={<UserRecipes />} />
               <Route path="/recipes/create" element={<RecipeForm />} />
+              <Route path="/recipe/:id" element={<Recipe />} />
               <Route path="/favorites" element={<UserFavorites />} />
+
               {/* <Route path="/favorites/create" element={<FavoriteForm />} /> */}
             </>
           ) : (

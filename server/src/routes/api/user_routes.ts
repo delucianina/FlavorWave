@@ -44,12 +44,12 @@ router.get('/recipes/user', isAuthenticated, async(req: Request, res: Response) 
     }
   });
 
-  res.json(userRecipes);
+  res.json({recipes: userRecipes});
 });
 
 
 // Get user favorite recipes
-router.get('/favorites/:user_id', isAuthenticated, async (req: Request, res: Response) => {
+router.get('/favorites/user', isAuthenticated, async (req: Request, res: Response) => {
   try {
     const userFavorites = await Favorite.findAll({
       where: {
@@ -57,6 +57,7 @@ router.get('/favorites/:user_id', isAuthenticated, async (req: Request, res: Res
       },
       include: Recipe
     });
+
 
     res.json({
       favorites: userFavorites
