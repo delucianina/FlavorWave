@@ -73,13 +73,5 @@ Contributions are welcome! Please feel free to submit a pull request for any imp
 . Adonis Zepeda
 . Rita Aponte
 
-## Questions
-
-If you have any questions feel free to reach out to us:
-
--
--
--
--
 
 Thank you for using FlavorWave! We hope you enjoy managing your recipes with our application.
