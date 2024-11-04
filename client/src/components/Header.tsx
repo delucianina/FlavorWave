@@ -1,19 +1,33 @@
-// import { NavLink } from 'react-router-dom';
-// import axios from 'axios'
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useStore } from '../store';
+import { ReactEventHandler } from 'react';
+import axios from 'axios';
 
 function Header() {
+
+    const store = useStore();
+    const navigate = useNavigate();
+
+    if (!store) {
+        throw new Error('Store is not available');
+    }
+
+    const { state, setState } = store;
+
+    const logoutUser: ReactEventHandler<HTMLAnchorElement> = async (event) => {
+        event.preventDefault();
+
+        await axios.get('/auth/logout');
+
+        setState(oldState => ({
+            ...oldState,
+            user: null
+        }));
+
+        navigate('/');
+    };
     return (
-        // <nav>
-        //     <div className='navbar'>
 
-        //         <h1 className='custom-font chili-red logo'>FlavorWave</h1>
-        //         <h6>Search Recipes</h6>
-        //         <h6>Favorites</h6>
-        //         <h6>About</h6>
-        //         <h6>Contact</h6>
-
-        //     </div>
-        // </nav>
 
         // BOOTSTRAP NAV ----------------------
         <nav className="navbar-bg navbar navbar-expand-lg bg-body-tertiary">
@@ -23,20 +37,41 @@ function Header() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Search Recipes</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Favorites</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">About</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Contact</a>
-                        </li>
-                    </ul>
+
+                    {state.user && <p className="m-0 pe-4 align-middle">Welcome, {state.user.username}</p>}
+
+                    <NavLink className="nav-link" to="/">Home</NavLink>
+
+                    {state.user ? (
+                        <>
+                            <a onClick={logoutUser} className="nav-link" href="/auth/logout">Log Out</a>
+                            <ul className="navbar-nav">
+                                <li className="nav-item">
+                                    <NavLink className="nav-link active" aria-current="page" to="/recipes">Recipes</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/favorites">Favorites</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/recipes/create">Add Recipe</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/favorites/create">Add Favorite</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">About</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </>
+                    ) : (
+                        <>
+                            <NavLink className="nav-link" to="/login">Sign In</NavLink>
+                            <NavLink className="nav-link" to="/register">Sign Up</NavLink>
+                        </>
+                    )}
                 </div>
                 {/* SEARCH BAR */}
                 <div className="container-fluid search-bar">

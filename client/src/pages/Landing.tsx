@@ -1,5 +1,9 @@
+
 // import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useStore } from '../store';
+
 
 function Landing() {
 
@@ -16,19 +20,33 @@ function Landing() {
         alert(`You selected: ${recipe}`);
     }
 
+    const store = useStore();
+
+    if (!store) {
+      throw new Error("Store is not available");
+    }
+  
+    const { state } = store;
+
 
 
     return (
         <main>
 
-            {/* this will be centered in the middle top of the page */}
+
+            <NavLink to={state.user ? '/shops' : '/register'} className="btn btn-primary btn-lg px-5">
+                {state.user ? 'View Your Shops!' : 'Start Now!'}
+            </NavLink>
+
+
+            {/* //this will be centered in the middle top of the page  */}
+
             <section>
                 <h2>Today's Special</h2>
                 <p>{todaysSpecial}</p>
                 <button onClick={() => handleRecipeClick(todaysSpecial)}>Select Today's Special</button>
             </section>
 
-            {/* this is just in the middle */}
             <section>
                 <h2>Random Recipes</h2>
                 <ul>
