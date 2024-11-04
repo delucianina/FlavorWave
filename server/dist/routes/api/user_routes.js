@@ -79,10 +79,16 @@ router.post('/recipes/create', isAuthenticated, async (req, res) => {
     }
 });
 // Add a favorite (Matt I added this code to add a favorite but it kept giving me an error)
-router.post('/favorites/create', isAuthenticated, async (req, res) => {
+router.post('/favorites', isAuthenticated, async (req, res) => {
     try {
+        const recipe = await Recipe.create({
+            name: req.body.title,
+            ingredients: req.body.ingredients,
+            instructions: req.body.instructions,
+            user_id: req.user.id
+        });
         await Favorite.create({
-            ...req.body,
+            recipe_id: recipe.id,
             user_id: req.user.id,
         });
         res.json({

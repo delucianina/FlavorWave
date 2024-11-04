@@ -2,7 +2,7 @@ import {DataTypes, Model} from 'sequelize';
 import client from '../config/connection.js';
 
 interface RecipeAttributes {
-    id: number;
+    id?: number;
     name: string;
     ingredients: string;
     instructions: string;

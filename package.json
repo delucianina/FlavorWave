@@ -10,7 +10,7 @@
     "server:install": "cd ./server && npm i",
     "server:build": "cd ./server && npm run build",
     "server:dev": "cd ./server && npm run dev",
-    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "dev": "concurrently \"npm run server:dev\" \"wait-on tcp:3333 && npm run client:dev\"",
     "seed": "cd ./server && npm run seed",
     "start": "cd ./server && npm start",
     "install": "cd ./server && npm i",
@@ -29,7 +29,8 @@
     "@types/faker": "^6.6.8",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node-fetch": "^2.6.11",
-    "concurrently": "^9.0.1"
+    "concurrently": "^9.0.1",
+    "wait-on": "^8.0.1"
   },
   "dependencies": {
     "@faker-js/faker": "^9.1.0",

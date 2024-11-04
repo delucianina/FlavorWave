@@ -24,7 +24,8 @@ function UserFavorites() {
           <article key={favorite.recipe_id} className="col-4 d-flex flex-column align-items-center p-3">
             <h4>{favorite.Recipe.name}</h4>
             <NavLink className="btn btn-primary" to={`/recipe/${favorite.recipe_id}`} state={{
-              recipe:favorite.Recipe
+              recipe:favorite.Recipe,
+              isFavorite: true
             }}>View Recipe</NavLink>
           </article>
         ))}
