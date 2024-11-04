@@ -1,4 +1,6 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import {client} from './models/index.js';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
@@ -26,6 +28,18 @@ try {
     console.log('Database synced successfully');
 } catch (error) {
     console.error('Error syncing database:', error);
+}
+
+// Render deployment code that will only trigger when the app is running on Render
+if (process.env.PORT) {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    // Share the contents of client/dist
+    app.use(express.static(path.join(__dirname, '../../client/dist')));
+    // Wildcard route that will send back the index html file for any requests that are made outside of the routes above
+    app.get('*', (_, res) => {
+        res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+    });
 }
 
 app.listen(PORT, () => console.log('Express server started'));

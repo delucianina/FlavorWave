@@ -9,7 +9,7 @@ function Footer() {
             Matt Morgan<br></br>
             Adonis Zepeda</p>
             <p>Copyright {date.getFullYear()}.<br></br><br></br><br></br><br></br>
-            FlavorWave Project Repository: <a href="https://github.com/delucianina/Recipe_Blog">here.</a></p>
+            FlavorWave Project Repository: <a href="https://github.com/delucianina/FlavorWave" target="_blank" rel="noreferrer noopener">here.</a></p>
         </footer>
     )
 }

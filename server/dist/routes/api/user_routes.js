@@ -31,16 +31,16 @@ router.get('/recipes/search', isAuthenticated, async (req, res) => {
 });
 // Get user shops
 // localhost:3333/api/shops/user
-router.get('/recipes', isAuthenticated, async (req, res) => {
+router.get('/recipes/user', isAuthenticated, async (req, res) => {
     const userRecipes = await Recipe.findAll({
         where: {
             user_id: req.user.id
         }
     });
-    res.json(userRecipes);
+    res.json({ recipes: userRecipes });
 });
 // Get user favorite recipes
-router.get('/favorites', isAuthenticated, async (req, res) => {
+router.get('/favorites/user', isAuthenticated, async (req, res) => {
     try {
         const userFavorites = await Favorite.findAll({
             where: {

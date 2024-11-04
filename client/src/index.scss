@@ -48,9 +48,31 @@ body,
 .grid-wrapper {
   display: inline-grid;
   padding: 50px 30px;
-  margin-top: 75px;
+  margin: 0 0 75px 0;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
+
+  // MEDIA QUERY 
+  $small: 800px;
+  
+    @media screen and (max-width: $small) {
+      display: flex;
+      flex-direction: column;
+    }
+}
+
+.col {
+  margin: 30px;
+  padding: 20px;
+  border: 2px solid black;
+  height: 300px;
+
+  // MEDIA QUERY 
+  $small: 800px;
+  
+    @media screen and (max-width: $small) {
+      height: 300px;
+    }
 }
 
 
@@ -101,6 +123,14 @@ body,
   align-items: center;
 }
 
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 75px;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 /* PROFILE STYLES --------------------------------*/
@@ -116,8 +146,8 @@ body,
 }
 
 .profile-page {
-  background-image: url('./assets/images/cutting_board_2.jpg');
-  background-position: center;
+  background-image: url('./assets/images/squash_1.jpg');
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #efefef;
@@ -144,9 +174,19 @@ body,
   align-items: center;
   text-align: center;
   margin: auto;
+  width: 30%;
+  height: 80%;
   h4 {
     font-weight: 600;
   }
+}
+
+.user-quote {
+  border: 2px solid black;
+  width: 300px; 
+  background-color: #ffffffdc;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .diet-pref {
