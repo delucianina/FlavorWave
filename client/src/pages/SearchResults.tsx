@@ -15,13 +15,13 @@ function SearchResults() {
 
   return (
     <>
-      <h1 className="text-center mt-5">View Your Recipes</h1>
+      <h1 className="text-center search-result-bg">Recipe Search Results</h1>
       <div className="container py-5">
         <section className="results-output">
           {!location.state.results.length && <h4 className="ms-4 mt-3 fw-light">No results found...</h4>}
 
           {location.state.results.map((recipe: Recipe, index: number) => (
-            <article key={index} className="d-flex flex-column p-4 border border-light-subtle">
+            <article key={index} className="d-flex flex-column p-4 result-outline">
               <h3>{recipe.title}</h3>
               <p className="flex-fill">Ingredients: {recipe.ingredients}</p>
               <details>
@@ -29,7 +29,7 @@ function SearchResults() {
                 {recipe.instructions}
               </details>
               <div className="d-flex justify-content-center mt-4">
-                <button onClick={() => addFavorite(recipe)} className="btn btn-primary">Add to Favorites</button>
+                <button onClick={() => addFavorite(recipe)} className="btn-fav">Add to Favorites</button>
               </div>
             </article>
           ))}

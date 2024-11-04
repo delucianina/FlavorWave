@@ -63,7 +63,7 @@ function AuthForm(propsObj: { isLogin: boolean }) {
   }
 
   return (
-    <section className="row mt-5 login-bg">
+    <section className="row login-bg">
       <div className="white-bg">
         <form onSubmit={handleSubmit} className="col-4 mx-auto">
           <h2 className="text-center">{propsObj.isLogin ? 'Sign In' : 'Sign Up'}</h2>
