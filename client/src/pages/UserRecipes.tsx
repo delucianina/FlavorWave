@@ -10,6 +10,7 @@ function UserRecipes() {
   useEffect(() => {
     axios.get('/api/recipes')
       .then(res => {
+        console.log(res.data);
         setRecipes([...res.data.recipes]);
       })
   }, []);

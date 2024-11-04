@@ -24,9 +24,9 @@ function RecipeForm() {
     event.preventDefault();
 
     try {
-      await axios.post('/api/recipe/create', formData);
+      await axios.post('/api/recipes/create', formData);
 
-      navigate('/recipes/create');
+      navigate('/recipes');
     } catch (error: any) {
       setFormData(oldFormData => ({
         ...oldFormData,
@@ -50,12 +50,12 @@ function RecipeForm() {
 
         <div className="mb-3">
           <label htmlFor="address-input" className="form-label">Ingredients</label>
-          <input onChange={handleInputChange} name="address" type="text" className="form-control" id="address-input" />
+          <input onChange={handleInputChange} name="ingredients" type="text" className="form-control" id="address-input" />
         </div>
 
         <div className="mb-3">
           <label htmlFor="address-input" className="form-label">Instructions</label>
-          <input onChange={handleInputChange} name="address" type="text" className="form-control" id="address-input" />
+          <input onChange={handleInputChange} name="instructions" type="text" className="form-control" id="address-input" />
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>

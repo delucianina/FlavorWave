@@ -35,7 +35,8 @@ router.get('/recipes/user', isAuthenticated, async (req, res) => {
     const userRecipes = await Recipe.findAll({
         where: {
             user_id: req.user.id
-        }
+        },
+        order: [['id', 'ASC']]
     });
     res.json({ recipes: userRecipes });
 });
