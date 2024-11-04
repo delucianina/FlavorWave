@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import { useStore } from '../store';
 
+
 const initialFormData = {
   username: '',
   email: '',
@@ -13,7 +14,7 @@ const initialFormData = {
 }
 
 function AuthForm(propsObj: {isLogin: boolean}) {
-  const [formData, setFormData] = useState(initialFormData); 
+  const [formData, setFormData] = useState<FormData>(initialFormData); 
   const navigate = useNavigate();
   const store = useStore();
 
@@ -27,13 +28,12 @@ function AuthForm(propsObj: {isLogin: boolean}) {
     event.preventDefault();
 
     const url = propsObj.isLogin ? '/auth/login' : '/auth/register';
-    
+
     try {
       const res = await axios.post(url, formData)
 
-
       if (res.status === 200) {
-        setState(oldState => ({
+        setState((oldState: any) => ({
           ...oldState,
           user: res.data.user
         }));
@@ -41,18 +41,13 @@ function AuthForm(propsObj: {isLogin: boolean}) {
         navigate('/');
       } 
     } catch (error: any) {
-
-      // console.log(formData);
-      // console.log(url);
-      // console.log(error);
-    
+   
       setFormData(oldFormData => ({
         ...oldFormData,
         // This is the property on the formData above
         error_message: error.response.data.message
       }));
     }
-
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +55,6 @@ function AuthForm(propsObj: {isLogin: boolean}) {
       ...oldFormData,
       [event.target.name]: event.target.value
     }));
-
-    console.log(formData);
   }
 
   return (
@@ -79,7 +72,7 @@ function AuthForm(propsObj: {isLogin: boolean}) {
             </div>
           </>
         )}
-
+        
         <div className="mb-3">
           <label htmlFor="email-input" className="form-label">Email Address</label>
           <input onChange={handleInputChange} value={formData.email} name="email" type="email" className="form-control" id="email-input" aria-describedby="emailHelp" required />
@@ -88,7 +81,6 @@ function AuthForm(propsObj: {isLogin: boolean}) {
           <label htmlFor="password-input" className="form-label">Password</label>
           <input onChange={handleInputChange} value={formData.password} name="password" type="password" className="form-control" id="password-input" autoComplete="on" required />
         </div>
-
 
         <div className="d-grid">
           <button type="submit" className="btn btn-primary full-width">Submit</button>

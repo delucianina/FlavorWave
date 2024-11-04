@@ -1,8 +1,11 @@
-import { useEffect } from 'react';
-import {Routes, Route, useLocation} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {BrowserRouter as Router, Routes, Route, useLocation} from 'react-router-dom';
 import { useStore } from './store';
 
 import Header from './components/Header';
+import Profile from './components/Profile';
+import Favorites from './components/Favorites';
+import Footer from './components/Footer';
 
 import Landing from './pages/Landing';
 import AuthForm from './pages/AuthForm';
@@ -11,6 +14,7 @@ import UserRecipes from './pages/UserRecipes';
 import UserFavorites from './pages/UserFavorites';
 import RecipeForm from './pages/RecipeForm';
 // import FavoriteForm from './pages/FavoriteForm';
+
 
 function App() {
   const store = useStore();
@@ -55,6 +59,7 @@ function App() {
   }, [location]);
 
   return (
+
     <>
       {state.loading && (
         <>
@@ -139,3 +144,4 @@ export default App
 // }
 
 // export default App;
+
