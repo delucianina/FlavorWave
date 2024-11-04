@@ -13,8 +13,8 @@ const initialFormData = {
   error_message: ''
 }
 
-function AuthForm(propsObj: {isLogin: boolean}) {
-  const [formData, setFormData] = useState<FormData>(initialFormData); 
+function AuthForm(propsObj: { isLogin: boolean }) {
+  const [formData, setFormData] = useState(initialFormData);
   const navigate = useNavigate();
   const store = useStore();
 
@@ -37,11 +37,11 @@ function AuthForm(propsObj: {isLogin: boolean}) {
           ...oldState,
           user: res.data.user
         }));
-        
+
         navigate('/');
-      } 
+      }
     } catch (error: any) {
-   
+
       setFormData(oldFormData => ({
         ...oldFormData,
         // This is the property on the formData above
@@ -58,41 +58,43 @@ function AuthForm(propsObj: {isLogin: boolean}) {
   }
 
   return (
-    <section className="row mt-5">
-      <form onSubmit={handleSubmit} className="col-4 mx-auto">
-        <h2 className="text-center">{propsObj.isLogin ? 'Sign In' : 'Sign Up'}</h2>
+    <section className="row mt-5 login-bg">
+      <div className="white-bg">
+        <form onSubmit={handleSubmit} className="col-4 mx-auto">
+          <h2 className="text-center">{propsObj.isLogin ? 'Sign In' : 'Sign Up'}</h2>
 
-        {formData.error_message && <p className="text-danger text-center">{formData.error_message}</p>}
+          {formData.error_message && <p className="text-danger text-center">{formData.error_message}</p>}
 
-        {!propsObj.isLogin && (
-          <>
-            <div className="mb-3">
-              <label htmlFor="first-name-input" className="form-label">Username</label>
-              <input onChange={handleInputChange} value={formData.username} name="username" type="text" className="form-control" id="first-name-input" required />
-            </div>
-          </>
-        )}
-        
-        <div className="mb-3">
-          <label htmlFor="email-input" className="form-label">Email Address</label>
-          <input onChange={handleInputChange} value={formData.email} name="email" type="email" className="form-control" id="email-input" aria-describedby="emailHelp" required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password-input" className="form-label">Password</label>
-          <input onChange={handleInputChange} value={formData.password} name="password" type="password" className="form-control" id="password-input" autoComplete="on" required />
-        </div>
-
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary full-width">Submit</button>
-
-          {propsObj.isLogin ? (
-            <NavLink className="text-center mt-3" to="/register">Haven't signed up? Click Here!</NavLink>
-          ) : (
-            <NavLink className="text-center mt-3" to="/login">Already signed up? Click Here!</NavLink>
+          {!propsObj.isLogin && (
+            <>
+              <div className="mb-3">
+                <label htmlFor="first-name-input" className="form-label">Username</label>
+                <input onChange={handleInputChange} value={formData.username} name="username" type="text" className="form-control" id="first-name-input" required />
+              </div>
+            </>
           )}
-        </div>        
 
-      </form>
+          <div className="mb-3">
+            <label htmlFor="email-input" className="form-label">Email Address</label>
+            <input onChange={handleInputChange} value={formData.email} name="email" type="email" className="form-control" id="email-input" aria-describedby="emailHelp" required />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password-input" className="form-label">Password</label>
+            <input onChange={handleInputChange} value={formData.password} name="password" type="password" className="form-control" id="password-input" autoComplete="on" required />
+          </div>
+
+          <div className="d-grid">
+            <button type="submit" className="btn btn-primary full-width">Submit</button>
+
+            {propsObj.isLogin ? (
+              <NavLink className="text-center mt-3" to="/register">Haven't signed up? Click Here!</NavLink>
+            ) : (
+              <NavLink className="text-center mt-3" to="/login">Already signed up? Click Here!</NavLink>
+            )}
+          </div>
+
+        </form>
+      </div>
     </section>
   )
 }

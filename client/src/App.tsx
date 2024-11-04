@@ -64,12 +64,13 @@ function App() {
       {state.loading && (
         <>
           <div className="loading d-flex justify-content-center align-items-center">
-            <h2>Loading ...</h2>
+            <h2>Stirring ...</h2>
           </div>
         </>
       )}
 
       <Header />
+      
 
       <main className="container-fluid">
         <Routes>
@@ -97,6 +98,9 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+
+      <Footer />
+      
     </>
   )
 }
