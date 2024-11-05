@@ -78,7 +78,7 @@ function App() {
       <Header />
       
 
-      <main className="">
+      <main className="flex-fill">
         <Routes>
           <Route path="/" element={<Landing />} />
           {/* <Route path="/contact" element={<Contact />} /> */}
