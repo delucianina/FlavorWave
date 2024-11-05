@@ -62,15 +62,12 @@ function Header() {
                                         <li>
                                             <NavLink className="dropdown-item" to="/recipes/create">Add Recipe</NavLink>
                                         </li>
-                                        <li>
-                                            <NavLink className="dropdown-item" to="/contact">Contact</NavLink>
-                                        </li>
                                         {/* <li>
-                                            <NavLink className="dropdown-item" to="/favorites/create">Add Favorite</NavLink>
+                                            <NavLink className="dropdown-item" to="/contact">Contact</NavLink>
                                         </li> */}
-                                        <li>
+                                        {/* <li>
                                             <a className="dropdown-item" href="#">About</a>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </li>
                             </ul>

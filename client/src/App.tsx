@@ -15,7 +15,7 @@ import UserFavorites from './pages/UserFavorites';
 import RecipeForm from './pages/RecipeForm';
 import Recipe from './pages/Recipe';
 import SearchResults from './pages/SearchResults';
-import Contact from './pages/Contact';
+// import Contact from './pages/Contact';
 // import FavoriteForm from './pages/FavoriteForm';
 
 
@@ -43,26 +43,26 @@ function App() {
     '/contact': 'FlavorWave - Contact Us'
   };
 
-  // const getTitle = (path: string): string => {
-  //   // console.log(path);
-  //   if (path.startsWith('/shop/')) {
-  //     const route = path.split('/shop/')[1];
-  //     if (!isNaN(Number(route))) {
-  //       return `Wine Tracker - View Shop ${route}`;
-  //     } else {
-  //       return `Wine Tracker - ${route[0].toUpperCase()}${route.slice(1)} Shop`
-  //     }
-  //   }
-  //   return titles[path] || 'Page Not Found';
-  // };
+  const getTitle = (path: string): string => {
+    // console.log(path);
+    if (path.startsWith('/recipe/')) {
+      const route = path.split('/recipe/')[1];
+      if (!isNaN(Number(route))) {
+        return `FlavorWave - Recipe ${route}`;
+      } else {
+        return `FlavorWave - ${route[0].toUpperCase()}${route.slice(1)} Recipe`
+      }
+    }
+    return titles[path] || 'Page Not Found';
+  };
 
-  // useEffect(() => {
-  //   // Grab the corresponding title based on the current route - what comes after localhost:5173
-  //   const title = getTitle(location.pathname);
+  useEffect(() => {
+    // Grab the corresponding title based on the current route - what comes after localhost:5173
+    const title = getTitle(location.pathname);
 
-  //   // Set the browser tab title when the location of the browser changes
-  //   document.title = title || 'Page Not Found';
-  // }, [location]);
+    // Set the browser tab title when the location of the browser changes
+    document.title = title || 'Page Not Found';
+  }, [location]);
 
   return (
 
@@ -81,7 +81,7 @@ function App() {
       <main className="">
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/contact" element={<Contact />} />
+          {/* <Route path="/contact" element={<Contact />} /> */}
 
           {/* 
             These are conditional routes that will only load based on the state.user property being truthy or falsey 
