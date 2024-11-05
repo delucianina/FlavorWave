@@ -11,20 +11,25 @@ import { useNavigate } from 'react-router-dom';
 //   user_id?: number;
 // }
 
-function SearchRecipes () {
+function SearchRecipes() {
   const [ingredient, setIngredient] = useState('');
   const navigate = useNavigate();
 
-  
+
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const res = await axios.get(`/api/recipes/search?ingredient=${ingredient}`);
 
-    navigate('/results', {
-      state: {
-        results: res.data
-      }
-    });
+    try {
+      const res = await axios.get(`/api/recipes/search?ingredient=${ingredient}`);
+      setIngredient(''); // resets search bar once you search 
+      navigate('/results', {
+        state: {
+          results: res.data
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
   };
 
